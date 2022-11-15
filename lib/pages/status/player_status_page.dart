@@ -13,16 +13,6 @@ class _PlayerStatusPageState extends State<PlayerStatusPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            ClipRRect(
-              borderRadius: BorderRadius.circular(40),
-              child: Image(
-                width: 200,
-                height: 200,
-                image: NetworkImage(
-                  'http://1.bp.blogspot.com/-Cojn1I8UAD0/UVpN3MdQtiI/AAAAAAAAAoo/FgULqKrRP9Q/s1600/golias+druida.png',
-                ),
-              ),
-            ),
             Padding(
               padding: const EdgeInsets.symmetric(
                 vertical: 10.0,
@@ -127,35 +117,35 @@ class _PlayerStatusPageState extends State<PlayerStatusPage> {
             width: 120,
             height: 160,
             child: Card(
-              child: Text('Força'),
+              child: Text('Destreza'),
             ),
           ),
           SizedBox(
             width: 120,
             height: 160,
             child: Card(
-              child: Text('Força'),
+              child: Text('Constituição'),
             ),
           ),
           SizedBox(
             width: 120,
             height: 160,
             child: Card(
-              child: Text('Força'),
+              child: Text('Sabedoria'),
             ),
           ),
           SizedBox(
             width: 120,
             height: 160,
             child: Card(
-              child: Text('Força'),
+              child: Text('Inteligência'),
             ),
           ),
           SizedBox(
             width: 120,
             height: 160,
             child: Card(
-              child: Text('Força'),
+              child: Text('Carisma'),
             ),
           ),
         ],
