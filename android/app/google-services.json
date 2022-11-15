@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "836486606758",
+    "project_id": "book-of-argus",
+    "storage_bucket": "book-of-argus.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:836486606758:android:a13f96fb5da9eca4072967",
+        "android_client_info": {
+          "package_name": "com.example.book_of_argus"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "836486606758-goorndtumqeagamel1raqa3cpm704sfe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA7nvX53I6ILqDcEJoLZ6hGeb0dPqN1sME"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "836486606758-goorndtumqeagamel1raqa3cpm704sfe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

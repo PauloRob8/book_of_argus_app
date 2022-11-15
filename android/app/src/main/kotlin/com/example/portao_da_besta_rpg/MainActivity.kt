@@ -1,4 +1,4 @@
-package com.example.portao_da_besta_rpg
+package com.example.book_of_argus
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -1,4 +1,4 @@
-name: portao_da_besta_rpg
+name: book_of_argus
 description: A new Flutter project.
 publish_to: 'none' 
 
@@ -13,7 +13,10 @@ dependencies:
   flutter:
     sdk: flutter
 
-
+  firebase_auth: ^4.1.2
+  bloc: ^8.1.0
+  equatable: ^2.0.5
+  firebase_core: ^2.2.0
   font_awesome_flutter: ^10.2.1
   cupertino_icons: ^1.0.2
 
