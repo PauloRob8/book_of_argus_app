@@ -27,6 +27,9 @@ class Routes {
         ),
       ];
 
+  static get loginRoute => all[0].path;
+  static get mainPageRoute => all[1].path;
+
   static Map<String, WidgetBuilder> get allMapped {
     MapEntry('/login', (_) => const LoginPage());
     MapEntry('/main_page', (_) => const MainPage());

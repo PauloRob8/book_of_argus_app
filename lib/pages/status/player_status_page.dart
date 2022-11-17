@@ -110,42 +110,69 @@ class _PlayerStatusPageState extends State<PlayerStatusPage> {
             width: 120,
             height: 160,
             child: Card(
-              child: Text('Força'),
+              child: Column(
+                children: [
+                  Text(
+                    'Força',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontFamily: 'MedievalSharp',
+                      fontSize: 16,
+                    ),
+                  ),
+                  Text('14'),
+                ],
+              ),
             ),
           ),
           SizedBox(
             width: 120,
             height: 160,
             child: Card(
-              child: Text('Destreza'),
+              child: Text(
+                'Destreza',
+                textAlign: TextAlign.center,
+              ),
             ),
           ),
           SizedBox(
             width: 120,
             height: 160,
             child: Card(
-              child: Text('Constituição'),
+              child: Text(
+                'Constituição',
+                textAlign: TextAlign.center,
+              ),
             ),
           ),
           SizedBox(
             width: 120,
             height: 160,
             child: Card(
-              child: Text('Sabedoria'),
+              child: Text(
+                'Sabedoria',
+                textAlign: TextAlign.center,
+              ),
             ),
           ),
           SizedBox(
             width: 120,
             height: 160,
             child: Card(
-              child: Text('Inteligência'),
+              child: Text(
+                'Inteligência',
+                textAlign: TextAlign.center,
+              ),
             ),
           ),
           SizedBox(
             width: 120,
             height: 160,
             child: Card(
-              child: Text('Carisma'),
+              child: Text(
+                'Carisma',
+                textAlign: TextAlign.center,
+              ),
             ),
           ),
         ],
