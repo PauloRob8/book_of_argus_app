@@ -12,7 +12,7 @@ class _PlayerInfoPageState extends State<PlayerInfoPage> {
   Widget build(BuildContext context) => Center(
         child: ClipRRect(
           borderRadius: BorderRadius.circular(40),
-          child: Image(
+          child: const Image(
             width: 200,
             height: 200,
             image: NetworkImage(

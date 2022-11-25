@@ -1,6 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthService {
+  static User? getCurrentUser() {
+    final user = FirebaseAuth.instance.currentUser;
+    return user;
+  }
+
   Future<UserCredential> loginUser(
     String email,
     String password,

@@ -1,6 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class ItemsPage extends StatefulWidget {
   const ItemsPage({Key? key}) : super(key: key);
@@ -11,7 +9,7 @@ class ItemsPage extends StatefulWidget {
 
 class _ItemsPageState extends State<ItemsPage> {
   @override
-  Widget build(BuildContext context) => Center(
-        child: Text('Items Page'),
+  Widget build(BuildContext context) => const Center(
+        child: Text('Coming soon...'),
       );
 }

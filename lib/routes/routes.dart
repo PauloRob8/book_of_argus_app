@@ -1,3 +1,5 @@
+import 'package:book_of_argus/pages/characters/add_character_page.dart';
+import 'package:book_of_argus/pages/characters/characters_page.dart';
 import 'package:book_of_argus/pages/login/login_page.dart';
 import 'package:book_of_argus/pages/main_page.dart';
 import 'package:flutter/cupertino.dart';
@@ -25,15 +27,24 @@ class Routes {
           path: '/main_page',
           page: const MainPage(),
         ),
+        FeatureRoute(
+          name: 'char_page',
+          path: '/char_page',
+          page: CharactersPage.route(),
+        ),
+        FeatureRoute(
+          name: 'add_char_page',
+          path: '/add_char_page',
+          page: AddCharPage.route(),
+        ),
       ];
 
   static get loginRoute => all[0].path;
   static get mainPageRoute => all[1].path;
+  static get charactersPageRoute => all[2].path;
+  static get addCharPageRoute => all[3].path;
 
   static Map<String, WidgetBuilder> get allMapped {
-    MapEntry('/login', (_) => const LoginPage());
-    MapEntry('/main_page', (_) => const MainPage());
-
     final routes = Map.fromEntries(
       all.map(
         (route) => MapEntry(route.path, (_) => route.page),

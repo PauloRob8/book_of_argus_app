@@ -73,7 +73,7 @@ class _PlayerStatusPageState extends State<PlayerStatusPage> {
                 ),
               ),
             ),
-            Text(
+            const Text(
               'ATRIBUTOS',
               textAlign: TextAlign.center,
               style: TextStyle(
@@ -111,7 +111,7 @@ class _PlayerStatusPageState extends State<PlayerStatusPage> {
             height: 160,
             child: Card(
               child: Column(
-                children: [
+                children: const [
                   Text(
                     'Força',
                     textAlign: TextAlign.center,
@@ -125,7 +125,7 @@ class _PlayerStatusPageState extends State<PlayerStatusPage> {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             width: 120,
             height: 160,
             child: Card(
@@ -135,7 +135,7 @@ class _PlayerStatusPageState extends State<PlayerStatusPage> {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             width: 120,
             height: 160,
             child: Card(
@@ -145,7 +145,7 @@ class _PlayerStatusPageState extends State<PlayerStatusPage> {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             width: 120,
             height: 160,
             child: Card(
@@ -155,7 +155,7 @@ class _PlayerStatusPageState extends State<PlayerStatusPage> {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             width: 120,
             height: 160,
             child: Card(
@@ -165,7 +165,7 @@ class _PlayerStatusPageState extends State<PlayerStatusPage> {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             width: 120,
             height: 160,
             child: Card(

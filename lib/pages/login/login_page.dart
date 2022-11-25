@@ -44,7 +44,7 @@ class _LoginPageState extends State<LoginPage> {
 
   void _listener(BuildContext context, LoginState state) {
     if (state.userdId.isNotEmpty) {
-      Navigator.of(context).pushNamed(Routes.mainPageRoute);
+      Navigator.of(context).pushNamed(Routes.charactersPageRoute);
     } else if (state.errorType == LoginError.invalidEmail) {
       ScaffoldMessenger.of(context)
           .showSnackBar(_snackBar('O email informado não está cadastrado!'));
@@ -123,6 +123,7 @@ class _LoginPageState extends State<LoginPage> {
           focusNode: _loginFocusNode,
           cursorColor: Colors.purple,
           decoration: InputDecoration(
+            counterText: '',
             fillColor: Colors.purple[700],
             focusedBorder: const OutlineInputBorder(
               borderSide: BorderSide(
@@ -153,6 +154,7 @@ class _LoginPageState extends State<LoginPage> {
           focusNode: _passwordFocusNode,
           cursorColor: Colors.purple,
           decoration: InputDecoration(
+            counterText: '',
             focusedBorder: const OutlineInputBorder(
               borderSide: BorderSide(
                 width: 2.0,

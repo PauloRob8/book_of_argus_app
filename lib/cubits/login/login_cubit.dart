@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:book_of_argus/cubits/login/login_state.dart';
 import 'package:book_of_argus/services/auth_service.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -38,6 +39,7 @@ class LoginCubit extends Cubit<LoginState> {
 
   Future<void> logout() async {
     await preferences.remove('userId');
+    FirebaseAuth.instance.signOut();
     emit(LoginState.logout());
   }
 
@@ -53,9 +55,19 @@ class LoginCubit extends Cubit<LoginState> {
 
       debugPrint(userId);
 
-      await preferences.setString('userId', userId);
+      final dataOnFirestore = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(userId)
+          .get();
 
-      emit(LoginState.success(userId: user.user!.uid));
+      if (!dataOnFirestore.exists) {
+        FirebaseFirestore.instance.collection('users').doc(userId).set({
+          'email': user.user!.email,
+          'isMaster': false,
+        });
+      }
+
+      emit(LoginState.success(userId: userId));
     } on FirebaseAuthException catch (error) {
       _onError(error);
     }
