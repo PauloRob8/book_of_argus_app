@@ -1,6 +1,6 @@
 import 'package:book_of_argus/cubits/login/login.dart';
 import 'package:book_of_argus/firebase_options.dart';
-import 'package:book_of_argus/pages/main_page.dart';
+import 'package:book_of_argus/pages/login/login_page.dart';
 import 'package:book_of_argus/routes/routes.dart';
 import 'package:book_of_argus/services/auth_service.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
             user != null ? Routes.charactersPageRoute : Routes.loginRoute,
         routes: Routes.allMapped,
         debugShowCheckedModeBanner: false,
-        home: const MainPage(),
+        home: const LoginPage(),
       ),
     );
   }

@@ -1,5 +1,6 @@
 import 'package:book_of_argus/cubits/characters/add_characters/add_characters_state.dart';
 import 'package:book_of_argus/cubits/characters/add_characters/add_charactes_cubit.dart';
+import 'package:book_of_argus/models/player_data.dart';
 import 'package:book_of_argus/widgets/button_medium.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,6 +24,7 @@ class _AddCharPageState extends State<AddCharPage> {
   late final TextEditingController _backgroundController;
   late final TextEditingController _playerNameController;
   late final TextEditingController _xpController;
+  late final TextEditingController _lvlController;
 
   late final FocusNode _nameFocusNode;
   late final FocusNode _raceFocusNode;
@@ -30,15 +32,17 @@ class _AddCharPageState extends State<AddCharPage> {
   late final FocusNode _backgroundFocusNode;
   late final FocusNode _playerNameFocusNode;
   late final FocusNode _xpFocusNode;
+  late final FocusNode _lvlFocusNode;
 
   String? _nameErrorText;
   String? _raceErrorText;
   String? _aligmentErrorText;
   String? _backgroundErrorText;
   String? _xpErrorText;
+  String? _lvlErrorText;
   String? _playerNameErrorText;
 
-  String _selectedClass = 'artífice';
+  String _selectedClass = PlayerData.warrior;
   final _defaultFieldErrorText = 'O campo ta vazio doidão!';
 
   AddCharactersCubit get cubit => context.read<AddCharactersCubit>();
@@ -53,6 +57,7 @@ class _AddCharPageState extends State<AddCharPage> {
     _backgroundController = TextEditingController();
     _playerNameController = TextEditingController();
     _xpController = TextEditingController();
+    _lvlController = TextEditingController();
 
     _nameFocusNode = FocusNode();
     _raceFocusNode = FocusNode();
@@ -60,6 +65,7 @@ class _AddCharPageState extends State<AddCharPage> {
     _backgroundFocusNode = FocusNode();
     _playerNameFocusNode = FocusNode();
     _xpFocusNode = FocusNode();
+    _lvlFocusNode = FocusNode();
   }
 
   @override
@@ -112,6 +118,11 @@ class _AddCharPageState extends State<AddCharPage> {
     } else {
       _xpErrorText = null;
     }
+    if (state.errorsType.contains(AddCharactersError.emptyLvl)) {
+      _lvlErrorText = _defaultFieldErrorText;
+    } else {
+      _lvlErrorText = null;
+    }
     if (state.errorsType.contains(AddCharactersError.emptyPlayerName)) {
       _playerNameErrorText = _defaultFieldErrorText;
     } else {
@@ -143,6 +154,7 @@ class _AddCharPageState extends State<AddCharPage> {
                   aligment: _aligmentController.text,
                   background: _backgroundController.text,
                   xp: _xpController.text,
+                  lvl: _lvlController.text,
                   playerName: _playerNameController.text,
                 ),
               ),
@@ -238,6 +250,22 @@ class _AddCharPageState extends State<AddCharPage> {
                 ),
               ),
               TextFormField(
+                controller: _lvlController,
+                focusNode: _lvlFocusNode,
+                keyboardType: TextInputType.number,
+                maxLength: 2,
+                decoration: InputDecoration(
+                  label: const Text(
+                    'level',
+                    style: TextStyle(
+                      fontFamily: 'NanumGothicCoding',
+                    ),
+                  ),
+                  counterText: '',
+                  errorText: _lvlErrorText,
+                ),
+              ),
+              TextFormField(
                 controller: _playerNameController,
                 focusNode: _playerNameFocusNode,
                 keyboardType: TextInputType.name,
@@ -297,119 +325,119 @@ class _AddCharPageState extends State<AddCharPage> {
       );
 
   List<DropdownMenuItem<String>> _makeClasses() => [
-        const DropdownMenuItem<String>(
-          value: 'artífice',
+        DropdownMenuItem<String>(
+          value: PlayerData.artificer,
           child: Text(
-            'artífice',
-            style: TextStyle(
+            PlayerData.artificer,
+            style: const TextStyle(
               color: Colors.cyan,
             ),
           ),
         ),
         DropdownMenuItem<String>(
-          value: 'bárbaro',
+          value: PlayerData.barbarian,
           child: Text(
-            'bárbaro',
+            PlayerData.barbarian,
             style: TextStyle(
               color: Colors.red[900],
             ),
           ),
         ),
-        const DropdownMenuItem<String>(
-          value: 'bardo',
+        DropdownMenuItem<String>(
+          value: PlayerData.bard,
           child: Text(
-            'bardo',
-            style: TextStyle(
+            PlayerData.bard,
+            style: const TextStyle(
               color: Colors.purple,
             ),
           ),
         ),
         DropdownMenuItem<String>(
-          value: 'bruxo',
+          value: PlayerData.warlock,
           child: Text(
-            'bruxo',
+            PlayerData.warlock,
             style: TextStyle(
               color: Colors.purple[900],
             ),
           ),
         ),
-        const DropdownMenuItem<String>(
-          value: 'clérigo',
+        DropdownMenuItem<String>(
+          value: PlayerData.cleric,
           child: Text(
-            'clérigo',
-            style: TextStyle(
+            PlayerData.cleric,
+            style: const TextStyle(
               color: Color.fromARGB(255, 185, 168, 18),
             ),
           ),
         ),
         DropdownMenuItem<String>(
-          value: 'druida',
+          value: PlayerData.druid,
           child: Text(
-            'druida',
+            PlayerData.druid,
             style: TextStyle(
               color: Colors.green[800],
             ),
           ),
         ),
         DropdownMenuItem<String>(
-          value: 'feiticeiro',
+          value: PlayerData.sorcerer,
           child: Text(
-            'feiticeiro',
+            PlayerData.sorcerer,
             style: TextStyle(
               color: Colors.red[600],
             ),
           ),
         ),
-        const DropdownMenuItem<String>(
-          value: 'guerreiro',
+        DropdownMenuItem<String>(
+          value: PlayerData.warrior,
           child: Text(
-            'guerreiro',
-            style: TextStyle(
+            PlayerData.warrior,
+            style: const TextStyle(
               color: Colors.orange,
             ),
           ),
         ),
-        const DropdownMenuItem<String>(
-          value: 'ladino',
+        DropdownMenuItem<String>(
+          value: PlayerData.rogue,
           child: Text(
-            'ladino',
-            style: TextStyle(
+            PlayerData.rogue,
+            style: const TextStyle(
               color: Colors.black54,
             ),
           ),
         ),
         DropdownMenuItem<String>(
-          value: 'mago',
+          value: PlayerData.mage,
           child: Text(
-            'mago',
+            PlayerData.mage,
             style: TextStyle(
               color: Colors.blue[900],
             ),
           ),
         ),
-        const DropdownMenuItem<String>(
-          value: 'monge',
+        DropdownMenuItem<String>(
+          value: PlayerData.monk,
           child: Text(
-            'monge',
-            style: TextStyle(
+            PlayerData.monk,
+            style: const TextStyle(
               color: Colors.brown,
             ),
           ),
         ),
-        const DropdownMenuItem<String>(
-          value: 'patrulheiro',
+        DropdownMenuItem<String>(
+          value: PlayerData.ranger,
           child: Text(
-            'patrulheiro',
-            style: TextStyle(
+            PlayerData.ranger,
+            style: const TextStyle(
               color: Colors.green,
             ),
           ),
         ),
-        const DropdownMenuItem<String>(
-          value: 'paladino',
+        DropdownMenuItem<String>(
+          value: PlayerData.paladin,
           child: Text(
-            'paladino',
-            style: TextStyle(
+            PlayerData.paladin,
+            style: const TextStyle(
               color: Colors.blueAccent,
             ),
           ),

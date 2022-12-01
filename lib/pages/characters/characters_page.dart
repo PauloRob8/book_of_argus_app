@@ -1,5 +1,6 @@
 import 'package:book_of_argus/cubits/characters/characters.dart';
 import 'package:book_of_argus/cubits/login/login.dart';
+import 'package:book_of_argus/pages/characters/widgets/character_card_widget.dart';
 import 'package:book_of_argus/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -19,7 +20,8 @@ class CharactersPage extends StatefulWidget {
 }
 
 class _CharactersPageState extends State<CharactersPage> {
-  LoginCubit get cubit => context.read<LoginCubit>();
+  LoginCubit get loginCubit => context.read<LoginCubit>();
+  CharactersCubit get charsCubit => context.read<CharactersCubit>();
 
   @override
   Widget build(BuildContext context) => BlocListener<LoginCubit, LoginState>(
@@ -40,7 +42,7 @@ class _CharactersPageState extends State<CharactersPage> {
             automaticallyImplyLeading: false,
             actions: [
               IconButton(
-                onPressed: () => cubit.logout(),
+                onPressed: () => loginCubit.logout(),
                 icon: const Icon(Icons.logout_outlined),
               ),
             ],
@@ -56,10 +58,13 @@ class _CharactersPageState extends State<CharactersPage> {
                     ),
                   );
                 }
-                return ListView.builder(
-                  itemCount: state.chars.length,
-                  itemBuilder: (context, index) => Text(
-                    '${state.chars[index].name} ${state.chars[index].charClass}',
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: 80.0),
+                  child: ListView.builder(
+                    itemCount: state.chars.length,
+                    itemBuilder: (context, index) => CharacterCardWidget(
+                      playerData: state.chars[index],
+                    ),
                   ),
                 );
               },
@@ -68,8 +73,10 @@ class _CharactersPageState extends State<CharactersPage> {
           floatingActionButton: FloatingActionButton.extended(
             backgroundColor: Colors.purple,
             tooltip: 'teste',
-            onPressed: () =>
-                Navigator.of(context).pushNamed(Routes.addCharPageRoute),
+            onPressed: () async {
+              await Navigator.of(context).pushNamed(Routes.addCharPageRoute);
+              charsCubit.loadChars();
+            },
             isExtended: true,
             label: Row(
               children: const [

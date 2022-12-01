@@ -6,6 +6,7 @@ enum AddCharactersError {
   emptyAligment,
   emptyBackground,
   emptyXP,
+  emptyLvl,
   emptyPlayerName,
 }
 

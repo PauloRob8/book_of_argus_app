@@ -4,6 +4,7 @@ import 'package:book_of_argus/models/player_data.dart';
 import 'package:book_of_argus/services/auth_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
+import 'package:uuid/uuid.dart';
 
 class AddCharactersCubit extends Cubit<AddCharactersState> {
   AddCharactersCubit() : super(AddCharactersState.initial());
@@ -15,6 +16,7 @@ class AddCharactersCubit extends Cubit<AddCharactersState> {
     required String aligment,
     required String background,
     required String xp,
+    required String lvl,
     required String playerName,
   }) {
     final emptyFields = <AddCharactersError>[];
@@ -33,6 +35,9 @@ class AddCharactersCubit extends Cubit<AddCharactersState> {
     if (xp.isEmpty) {
       emptyFields.add(AddCharactersError.emptyXP);
     }
+    if (lvl.isEmpty) {
+      emptyFields.add(AddCharactersError.emptyLvl);
+    }
     if (playerName.isEmpty) {
       emptyFields.add(AddCharactersError.emptyPlayerName);
     }
@@ -40,13 +45,16 @@ class AddCharactersCubit extends Cubit<AddCharactersState> {
     if (emptyFields.isNotEmpty) {
       emit(AddCharactersState.error(errors: emptyFields));
     } else {
+      final charId = const Uuid().v1();
       final data = PlayerData(
+        id: charId,
         name: name,
         race: race,
         charClass: charClass,
         aligment: aligment,
         background: background,
-        xp: double.parse(xp),
+        xp: int.parse(xp),
+        lvl: int.parse(lvl),
         playerName: playerName,
       );
       addCharacter(data: data);
@@ -62,7 +70,7 @@ class AddCharactersCubit extends Cubit<AddCharactersState> {
           .collection('users')
           .doc(AuthService.getCurrentUser()!.uid)
           .collection('characters')
-          .doc()
+          .doc(data.id)
           .set({
         'player_data': data.toMap(),
       });

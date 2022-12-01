@@ -16,9 +16,11 @@ class CharactersCubit extends Cubit<CharactersState> {
 
     final charsModel = charsData.docs
         .map(
-          (data) => PlayerData.fromMap(data.data()['player_data']),
+          (data) => PlayerData.fromFirebaseCollection(data),
         )
         .toList();
+
+    charsModel.sort(((a, b) => a.name.compareTo(b.name)));
 
     emit(CharactersState.fecthed(chars: charsModel));
   }

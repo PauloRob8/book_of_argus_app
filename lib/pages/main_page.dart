@@ -1,4 +1,7 @@
+import 'package:book_of_argus/cubits/status/player_status_cubit.dart';
+import 'package:book_of_argus/routes/screen_arguments.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'info/player_info_page.dart';
@@ -15,15 +18,25 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   @override
-  Widget build(BuildContext context) => DefaultTabController(
+  Widget build(BuildContext context) {
+    final args = ModalRoute.of(context)!.settings.arguments as ScreenArguments;
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (_) => PlayerStatusCubit(
+            charId: args.chardId,
+          )..getCharData(),
+        ),
+      ],
+      child: DefaultTabController(
         length: 4,
         child: Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.green,
             centerTitle: true,
-            title: const Text(
-              'Rokhan Loktharon',
-              style: TextStyle(
+            title: Text(
+              args.playerName.toUpperCase(),
+              style: const TextStyle(
                 fontFamily: 'MedievalSharp',
               ),
             ),
@@ -62,5 +75,7 @@ class _MainPageState extends State<MainPage> {
             ],
           ),
         ),
-      );
+      ),
+    );
+  }
 }
